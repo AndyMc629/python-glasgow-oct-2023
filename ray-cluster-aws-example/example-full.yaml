@@ -37,11 +37,11 @@ idle_timeout_minutes: 5
 # Cloud-provider specific configuration.
 provider:
     type: aws
-    region: us-west-2
+    region: eu-west-2
     # Availability zone(s), comma-separated, that nodes may be launched in.
     # Nodes will be launched in the first listed availability zone and will
     # be tried in the subsequent availability zones if launching fails.
-    availability_zone: us-west-2a,us-west-2b
+    #availability_zone: us-west-2a,us-west-2b
     # Whether to allow node reuse. If set to False, nodes will be terminated
     # instead of stopped.
     cache_stopped_nodes: True # If not present, the default is True.
