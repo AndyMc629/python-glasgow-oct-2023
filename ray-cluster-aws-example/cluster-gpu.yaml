@@ -78,20 +78,24 @@ file_mounts: {
 
 head_node_type: ray.head.default
 
+setup_commands:
+    - conda create -n py3108 python=3.10.8 -y && conda activate py3108
+
 head_start_ray_commands:
     - ulimit -n 65536
+    - conda activate py3108 && echo "py3108 Activated"
     - conda activate py3108 && ray stop
     - conda activate py3108 && ray start --head --port=6379 --object-manager-port=8076 --autoscaling-config=~/ray_bootstrap_config.yaml --dashboard-host=0.0.0.0
 
 worker_start_ray_commands:
     - ulimit -n 65536
+    - conda activate py3108 && echo "py3108 Activated"
     - conda activate py3108 && ray stop
     - conda activate py3108 && ray start --address=$RAY_HEAD_IP:6379 --object-manager-port=8076
 
-# initialization_commands: []
+initialization_commands: []
 
 head_setup_commands:
-
     - conda activate py3108 && pip install -U pip
     - conda activate py3108 && pip install -r infra/requirements.txt
 
@@ -99,5 +103,3 @@ worker_setup_commands:
     - conda activate py3108 && pip install -U pip
     - conda activate py3108 && pip install -r infra/requirements.txt
 
-setup_commands:
-    - conda create -n py3108 python=3.10.8 -y && conda activate py3108
