@@ -23,7 +23,7 @@ provider:
             config: "cloudwatch/cloudwatch-dashboard-config.json"
 
 auth:
-    ssh_user:  ubuntu #ec2-user #ubuntu
+    ssh_user:  ubuntu #ec2-user
 
 available_node_types:
     ray.head.default:
@@ -79,27 +79,40 @@ file_mounts: {
 head_node_type: ray.head.default
 
 setup_commands:
+    - source /home/ray/anaconda3/etc/profile.d/conda.sh
     - conda create -n py3108 python=3.10.8 -y && conda activate py3108
 
 head_start_ray_commands:
     - ulimit -n 65536
+    - source /home/ray/anaconda3/etc/profile.d/conda.sh
     - conda activate py3108 && echo "py3108 Activated"
     - conda activate py3108 && ray stop
     - conda activate py3108 && ray start --head --port=6379 --object-manager-port=8076 --autoscaling-config=~/ray_bootstrap_config.yaml --dashboard-host=0.0.0.0
+    - conda activate py3108
+    - conda env list
 
 worker_start_ray_commands:
     - ulimit -n 65536
+    - source /home/ray/anaconda3/etc/profile.d/conda.sh
     - conda activate py3108 && echo "py3108 Activated"
     - conda activate py3108 && ray stop
     - conda activate py3108 && ray start --address=$RAY_HEAD_IP:6379 --object-manager-port=8076
+    - conda activate py3108
+    - conda env list
 
 initialization_commands: []
 
 head_setup_commands:
+    - source /home/ray/anaconda3/etc/profile.d/conda.sh
     - conda activate py3108 && pip install -U pip
     - conda activate py3108 && pip install -r infra/requirements.txt
+    - conda activate py3108
+    - conda env list
 
 worker_setup_commands:
+    - source /home/ray/anaconda3/etc/profile.d/conda.sh
     - conda activate py3108 && pip install -U pip
     - conda activate py3108 && pip install -r infra/requirements.txt
+    - conda activate py3108
+    - conda env list
 

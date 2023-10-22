@@ -85,7 +85,7 @@ worker_start_ray_commands:
     - conda activate py3108 && ray stop
     - conda activate py3108 && ray start --address=$RAY_HEAD_IP:6379 --object-manager-port=8076
 
-# initialization_commands: []
+initialization_commands: []
 
 head_setup_commands:
 
