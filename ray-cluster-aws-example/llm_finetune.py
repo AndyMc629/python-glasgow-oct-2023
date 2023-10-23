@@ -42,7 +42,7 @@ import datasets
 # Global variables, can go in a config file
 MODEL_NAME = "google/flan-t5-small"
 NUM_WORKERS = 2
-USE_GPU = True
+USE_GPU = False #True
 
 
 def get_hf_dataset():
@@ -108,6 +108,7 @@ def train_func(config): #Q: is this config used anywhere?
     eval_iterable_ds = eval_dataset.iter_torch_batches(batch_size=8)
 
     args = transformers.TrainingArguments(
+        report_to="none", #disable wandb
         output_dir=f"{MODEL_NAME}-alpaca-data",
         evaluation_strategy="epoch",
         save_strategy="epoch",
@@ -177,9 +178,9 @@ def main():
     )
     logging.info(f"Ray trainer: {ray_trainer}")
     
-    # # Finetune the model
-    # result = ray_trainer.fit()
-    # logging.info(f"Resulting model: {result}")
+    # Finetune the model
+    result = ray_trainer.fit()
+    logging.info(f"Resulting model: {result}")
     
     # finetuned_model = get_finetuned_model(result)
     # output = llm_inference(
