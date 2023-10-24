@@ -66,7 +66,7 @@ pickleshare==0.7.5
 platformdirs==3.11.0
 prometheus-client==0.17.1
 prompt-toolkit==3.0.39
-protobuf==4.24.4
+protobuf==3.20.* #avoids a protobuf error on the cluster, original was #protobuf==4.24.4
 psutil==5.9.6
 ptyprocess==0.7.0
 pure-eval==0.2.2
@@ -110,3 +110,4 @@ watchfiles==0.21.0
 wcwidth==0.2.8
 xxhash==3.4.1
 yarl==1.9.2
+

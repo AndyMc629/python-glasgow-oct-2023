@@ -10,6 +10,8 @@ async-timeout==4.0.3
 attrs==23.1.0
 backcall==0.2.0
 blessed==1.20.0
+boto3==1.28.68
+botocore==1.31.68
 cachetools==5.3.1
 certifi==2023.7.22
 charset-normalizer==3.3.0
@@ -39,6 +41,7 @@ ipykernel==6.25.2
 ipython==8.16.1
 jedi==0.19.1
 Jinja2==3.1.2
+jmespath==1.0.1
 jsonschema==4.19.1
 jsonschema-specifications==2023.7.1
 jupyter_client==8.4.0
@@ -83,6 +86,7 @@ regex==2023.10.3
 requests==2.31.0
 rpds-py==0.10.6
 rsa==4.9
+s3transfer==0.7.0
 safetensors==0.4.0
 six==1.16.0
 smart-open==6.4.0
